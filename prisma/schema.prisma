@@ -9,7 +9,7 @@ datasource db {
 
 model Test {
   id        Int      @id @default(autoincrement())
-  startTime DateTime @default(now())
+  startTime DateTime
   shots     Int
   made      Int
 }

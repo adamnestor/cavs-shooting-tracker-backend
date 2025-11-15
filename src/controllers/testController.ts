@@ -5,13 +5,14 @@ const prisma = new PrismaClient();
 
 export const createTest = async (req: Request, res: Response) => {
   try {
-    const { shots, made, startTime } = req.body;
+    const { shots, made, startTime, playerId } = req.body;
 
     const test = await prisma.test.create({
       data: {
         shots,
         made,
         startTime: new Date(startTime),
+        playerId,
       },
     });
 
@@ -23,9 +24,11 @@ export const createTest = async (req: Request, res: Response) => {
 };
 
 export const getTests = async (req: Request, res: Response) => {
-  console.log("GET /api/tests called");
   try {
     const tests = await prisma.test.findMany({
+      include: {
+        player: true,
+      },
       orderBy: {
         startTime: "desc",
       },

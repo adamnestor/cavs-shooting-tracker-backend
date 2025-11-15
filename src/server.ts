@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import testRoutes from "./routes/testRoutes";
+import playerRoutes from "./routes/playerRoutes";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/tests", testRoutes);
+app.use("/api/players", playerRoutes);
 
 // Health check
 app.get("/", (req, res) => {

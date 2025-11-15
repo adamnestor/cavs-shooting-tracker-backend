@@ -7,8 +7,8 @@ import {
 
 const router = Router();
 
-router.get("/"), getPlayers;
-router.post("/"), createPlayer;
+router.get("/", getPlayers);
+router.post("/", createPlayer);
 router.put("/:id", updatePlayer);
 
 export default router;

@@ -23,7 +23,6 @@ export const createTest = async (req: Request, res: Response) => {
 };
 
 export const getTests = async (req: Request, res: Response) => {
-  console.log("GET /api/tests called");
   try {
     const tests = await prisma.test.findMany({
       orderBy: {

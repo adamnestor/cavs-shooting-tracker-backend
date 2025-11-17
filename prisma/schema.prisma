@@ -20,6 +20,7 @@ model Player {
 model Test {
   id            Int       @id @default(autoincrement())
   startTime     DateTime
+  endTime       DateTime
   shots         Int
   made          Int
   playerId      Int

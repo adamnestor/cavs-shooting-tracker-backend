@@ -25,4 +25,15 @@ model Test {
   made          Int
   playerId      Int
   player        Player    @relation(fields: [playerId], references: [id])
+  testType      String    @default("standard")
+  zoneStats     ZoneStat[]
+}
+
+model ZoneStat {
+  id            Int       @id @default(autoincrement())
+  testId        Int
+  test          Test      @relation(fields: [testId], references: [id])
+  zoneStats     String
+  made          Int
+  shots         Int
 }

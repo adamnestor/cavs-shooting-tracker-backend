@@ -33,7 +33,7 @@ model ZoneStat {
   id            Int       @id @default(autoincrement())
   testId        Int
   test          Test      @relation(fields: [testId], references: [id])
-  zoneStats     String
+  zone          String
   made          Int
   shots         Int
 }

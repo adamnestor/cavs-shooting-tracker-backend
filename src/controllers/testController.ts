@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 
 export const createTest = async (req: Request, res: Response) => {
   try {
-    const { shots, made, startTime, endTime, playerId } = req.body;
+    const { shots, made, startTime, endTime, playerId, testType, zoneStats } =
+      req.body;
 
     const test = await prisma.test.create({
       data: {
@@ -14,6 +15,16 @@ export const createTest = async (req: Request, res: Response) => {
         startTime: new Date(startTime),
         endTime: new Date(endTime),
         playerId,
+        testType: testType || "standard",
+        zoneStats: zoneStats
+          ? {
+              create: zoneStats.map((zone: any) => ({
+                zone: zone.zone,
+                made: zone.made,
+                shots: zone.shots,
+              })),
+            }
+          : undefined,
       },
     });
 
@@ -29,6 +40,7 @@ export const getTests = async (req: Request, res: Response) => {
     const tests = await prisma.test.findMany({
       include: {
         player: true,
+        zoneStats: true,
       },
       orderBy: {
         startTime: "desc",

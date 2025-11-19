@@ -10,14 +10,16 @@ const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 // Middleware
-app.use(cors({
-  origin: [
-    'http://localhost:5173',  // Local development
-    'http://localhost:3000',
-    'https://cavs-shooting-tracker-frontend.vercel.app',
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Local development
+      "http://localhost:3000",
+      "https://cavs-shooting-tracker.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Routes
